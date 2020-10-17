@@ -1,46 +1,69 @@
-import React from 'react';
-import { useEffect } from 'react';
-import { useState } from 'react';
-import { Container } from 'react-bootstrap';
+import React, { useEffect, useState } from 'react';
+import customer1 from '../../../images/customer-1.png';
+import customer2 from '../../../images/customer-2.png';
+import customer3 from '../../../images/customer-3.png';
+import FeedbackDetail from '../FeedbackDetail/FeedbackDetail';
+import './FeedBack.css';
 
-const Feedback = () => {
+// const feedbackData = [
+//     {
+//         name: 'Nash Patrik',
+//         img: customer1,
+//         rank: 'CEO, MANPOL'
+//     },
+//     {
+//         name: 'Miriam Barmon',
+//         img: customer2,
+//         rank: 'CEO, FREELAND'
+//     },
+//     {
+//         name: 'Bria Malone',
+//         img: customer3,
+//         rank: 'CEO, DARAZZ'
+//     }
+// ];
+
+const FeedBack = () => {
     const [feedback, setFeedback] = useState([]);
 
-
     useEffect(() => {
-        fetch(`https://creative-agency-by-sarwar.herokuapp.com/feedback`)
-            .then(res => res.json())
-            .then(data => {
-                setFeedback(data);
-            })
+        fetch('https://stark-castle-58192.herokuapp.com/reviews')
+        .then(res => res.json())
+        .then(data => {
+            setFeedback(data)
+        })
     }, [])
+
+    
+    
+    // heroku = 'https://stark-castle-58192.herokuapp.com/'
+
+
+    // const handleAddProduct = () => {
+
+    //     fetch('https://stark-castle-58192.herokuapp.com/addReview', {
+    //         method: 'POST',
+    //         headers: { 
+    //             'Content-Type': 'application/json'
+    //         },
+    //         // body: JSON.stringify(fakeData[0])
+    //         body: JSON.stringify(feedbackData)
+    //     })
+    // }
     return (
-        <Container fluid className="text-center p-5">
-            <Container>
-                <h2>Clients <span style={{ color: "#7AB259" }}>Feedback</span></h2>
-                <div className="row p-5">
+        <section className="feedback my-5">
+           <div className="container">
+               <div className="section-header text-center">
+                    <h3>Client <span style={{color: '#7AB259'}}>FeedBack</span></h3>
+               </div>
+               <div className="card-deck mt-5">
                     {
-                        feedback.map(feedback =>
-                            <div className="col-md-4 text-left" key={feedback._id}>
-                                <div className="border rounded p-3 pt-3 pb-3 m-1"> 
-                                    <div className="d-flex">
-                                        <div className="w-25 mt-2">
-                                            <img src={feedback.image} className="img-fluid rounded-circle" alt="" />
-                                        </div>
-                                        <div className="w-75 p-2">
-                                            <h5 className="font-weight-bold">{feedback.name}</h5>
-                                            <h6>{feedback.title}</h6>
-                                        </div>
-                                    </div>
-                                    <p><small>{feedback.feedback}</small></p>
-                                </div>
-                            </div>
-                        )
+                        feedback.map(feedback => <FeedbackDetail feedback={feedback} key={feedback.name}/>)
                     }
-                </div>
-            </Container>
-        </Container>
+               </div>
+           </div>
+       </section>
     );
 };
 
-export default Feedback;
+export default FeedBack;

@@ -1,0 +1,10 @@
+.services-card-style{
+    margin: 10px;
+    border: none;
+    height: 300px;
+    width: 250px;
+}
+
+.services-card-style:hover{
+    box-shadow: -1px -1px 27px -12px rgba(0,0,0,0.75);
+}

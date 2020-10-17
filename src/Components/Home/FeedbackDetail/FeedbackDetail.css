@@ -1,0 +1,8 @@
+.card-component-style{
+    border-radius: 50px;
+	transition: all 1s;
+}
+.card-deck-style:hover{
+    transform: rotate(360deg) scale(1.8);
+    opacity: 1.7;
+}

@@ -1,0 +1,7 @@
+.form-group input{
+    width: 450px;
+}
+.form-group-inline input{
+    width: 220px;
+    display: inline;
+}

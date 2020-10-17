@@ -1,40 +1,48 @@
 import React from 'react';
-import { useContext } from 'react';
-import { Container, Nav, Navbar } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import { UserContext } from '../../../App';
-import './NavBar.css'
+import logo from '../../../images/logos/logo.png';
 
-const NavBar = () => {
-    const [loggedInUser, setLoggedInUser] = useContext(UserContext);
+const Navbar = () => {
     return (
-        <Container fluid style={{backgroundColor: '#FBD062'}}>
-            <Container>
-                <Navbar expand="lg" className="fixed">
-                    <Navbar.Brand><Link to="/home"><img src="https://iili.io/2ZBmHQ.png" style={{ width: 150 }} className="d-inline-block align-top" alt="" /></Link></Navbar.Brand>
-                    <Navbar.Toggle aria-controls="basic-navbar-nav" />
-                    <Navbar.Collapse id="basic-navbar-nav">
-                        <Nav className="ml-auto">
-                            <Link to="/" className="navLink font-weight-bold">Home</Link>
-                            <Link to="/" className=" navLink">Our Portfolio</Link>
-                            <Link to="/" className="navLink">Our Team</Link>
-                            <Link to="/" className="navLink">Contact Us</Link>
-                            {
-                                loggedInUser.isSiggnedIn && <Link to="/" className="navLink">{loggedInUser.name}</Link>
-                            }
-                            
-                            {
-                                loggedInUser.isSiggnedIn
-                                ?<Link to="/login" onClick={() => setLoggedInUser({})} className="navLink btn btn-dark text-white pr-4 pl-4">Logout</Link>
-                                :<Link to="/login" className="navLink btn btn-dark text-white pr-4 pl-4">Login</Link>
-                            }
-                            <Link to="/adminsComponents" className="navLink btn btn-dark text-white pr-4 pl-4">Admin</Link>
-                        </Nav>
-                    </Navbar.Collapse>
-                </Navbar>
-            </Container>
-        </Container>
+        <nav className="navbar navbar-expand-lg navbar-light container">
+            <a class="navbar-brand" href="#">
+                <img src={logo} width="120" height="40" alt="" loading="lazy"/>
+            </a>
+            <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span className="navbar-toggler-icon">
+                </span>               
+            </button>
+
+            <div className="collapse navbar-collapse" id="navbarSupportedContent">               
+
+                <ul className="navbar-nav ml-auto">
+                    <li className="nav-item active">
+                        <Link className="nav-link mr-5" to="/home">Home</Link>
+                    </li>
+                    <li className="nav-item active">
+                        <Link className="nav-link mr-5" to="/ourPortfolio">Our Portfolio</Link>
+                    </li>
+                    <li className="nav-item active">
+                        <Link className="nav-link mr-5" to="/ourTeam">Our Team</Link>
+                    </li>
+                    <li className="nav-item active">
+                        <Link className="nav-link mr-5" to="/dashboard">Dashboard</Link>
+                    </li>
+                    <li className="nav-item active">
+                        <Link className="nav-link mr-5" to="/admin">Admin</Link>
+                    </li>
+                    <li className="nav-item active">
+                        <Link className="nav-link mr-5" to="/contactUs">Contact Us</Link>
+                    </li>
+                    <button className='btn btn-dark'>
+                        <Link style={{color: 'white', textDecoration: 'none'}} to="/login">
+                            Login
+                        </Link>
+                    </button>
+                </ul>
+            </div>
+        </nav>
     );
 };
 
-export default NavBar;
+export default Navbar;

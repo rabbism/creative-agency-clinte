@@ -1,0 +1,9 @@
+.brand-info-image img{	
+	border-radius: 30px;
+	transition: all 1s;
+	transform: rotate(5deg) scale(1);
+}
+.brand-info-image img:hover{
+    transform: rotate(360deg) scale(1.8);
+    opacity: 1.7;
+}
